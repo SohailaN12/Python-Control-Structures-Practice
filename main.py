@@ -24,13 +24,22 @@ How to use this file:
 #   60 to 69    -> "D"
 #   below 60    -> "F"
 def grade_letter(score):
-    pass
-
+    if score >= 90:
+        return "A"
+    elif score >= 80:
+        return "B"
+    elif score >= 70:
+        return "C" 
+    elif score >= 60:
+        return "D"
+    else:
+        return "F"
 
 # Exercise 1.2
 # Conceptual question: In grade_letter, what would go wrong if you checked
 # "score >= 60" first instead of "score >= 90"? Write your answer below.
-# Your answer:
+# Your answer: it will include grade range that are not accurate to the letter it's printing.
+#We need the order to reduce of possibilities with each statement.
 
 
 # Exercise 1.3
@@ -38,7 +47,10 @@ def grade_letter(score):
 # list has no items and False otherwise.
 # Rule: do NOT use == with an empty list. Use truthiness with "not".
 def is_empty(items):
-    pass
+    if not items:
+        return True
+    else:
+        return False
 
 
 # Exercise 1.4
@@ -48,7 +60,12 @@ def is_empty(items):
 #   "negative"  otherwise
 # Use if, elif, and else.
 def describe_number(n):
-    pass
+    if n == 0:
+        return "zero"
+    elif n > 0:
+        return "positive"
+    else:
+        return "negative"
 
 
 # =====================================================================
@@ -60,7 +77,11 @@ def describe_number(n):
 # the numbers from n down to 1, one per line, then prints "Liftoff!".
 # Use a while loop and make sure you update your counter so the loop ends.
 def countdown(n):
-    pass
+    # while loop that prints our number out
+    while n > 0:
+        print(n)
+        n = n-1
+    print("Liftoff!")
 
 
 # Exercise 2.2
@@ -69,14 +90,19 @@ def countdown(n):
 # Return the total. Do not include the negative number.
 # Example: [4, 5, -1, 10] should return 9.
 def total_until_negative(nums):
-    pass
+    total = 0
+    i = 0
+    while 0 < len(nums) and nums(n) >= 0:
+        total = total + nums(n)
+    return total  #? ask for help  
 
 
 # Exercise 2.3
 # Conceptual question: The loop in countdown would run forever if you forgot
 # to update the counter. What is the name for the variable that controls
 # when a while loop stops? Write your answer below.
-# Your answer:
+# Your answer:it is called a counter variable it keeps track of the loop
+# and helps the while loop know when to stop looping
 
 
 # =====================================================================
@@ -88,14 +114,19 @@ def total_until_negative(nums):
 # list of the even numbers from 0 up to n (inclusive if n is even).
 # Use range() with a step. Example: even_numbers(6) returns [0, 2, 4, 6].
 def even_numbers(n):
-    pass
+    numbers = []
+    for i in range(0, n + 1, 2):
+        numbers.append(i)
+    return numbers
 
 
 # Exercise 3.2
 # Write a function called print_multiples_of_three that prints every multiple
 # of 3 from 3 through 30, one per line. Use range(start, stop, step).
 def print_multiples_of_three():
-    pass
+    for i in range(3, 31, 3):
+        print(i)
+    
 
 
 # Exercise 3.3
@@ -107,7 +138,7 @@ def print_multiples_of_three():
 # Use enumerate(). Remember that enumerate() starts counting at 0,
 # so you will need to add 1 to the index.
 def print_numbered_list(items):
-    pass
+    
 
 
 # Exercise 3.4
@@ -125,7 +156,8 @@ def highest_scorer(scores):
 #     d = {"red": 1, "blue": 2}
 #     for k in d:
 #         print(k)
-# Your answer:
+# Your answer: it prints red and blue because the loop goes through the
+# dict keys it doesn't print the nums b/c those are the values
 
 
 # =====================================================================
@@ -137,7 +169,10 @@ def highest_scorer(scores):
 # and returns the index of the first negative number. If there is no negative
 # number, return -1. Use return inside the loop.
 def index_of_first_negative(nums):
-    pass
+     for index in range(len(nums)):
+        if nums[index] < 0:
+            return index
+   
 
 
 # Exercise 4.2
@@ -176,6 +211,7 @@ def bugged_countdown():
     n = 5
     while n > 0:
         print(n)
+        n = n -1
 
 
 # Exercise 5.2
@@ -200,7 +236,15 @@ def bugged_prices():
 #   - otherwise prints the number itself
 # Hint: check the FizzBuzz case first. Think about why the order matters.
 def fizzbuzz(n):
-    pass
+    for number in range(1, n + 1):
+        if number / 3 == 0 and number/5 == 0:
+            print("FizzBuzz")
+        elif number / 3 == 0:
+            print("Fizz")
+        elif number / 5 == 0:
+            print("Buzz")
+        else:
+            print(number)
 
 
 # =====================================================================
@@ -209,11 +253,11 @@ def fizzbuzz(n):
 # =====================================================================
 
 if __name__ == "__main__":
-    # print(grade_letter(85))            # Expected: B
-    # print(is_empty([]))                # Expected: True
-    # print(describe_number(-4))         # Expected: negative
-    # countdown(3)                       # Expected: 3, 2, 1, Liftoff!
-    # print(total_until_negative([4, 5, -1, 10]))   # Expected: 9
+    print(grade_letter(85))            # Expected: B
+    print(is_empty([]))                # Expected: True
+    print(describe_number(-4))         # Expected: negative
+    countdown(3)                       # Expected: 3, 2, 1, Liftoff!
+    #print(total_until_negative([4, 5, -1, 10]))   # Expected: 9
     # print(even_numbers(6))             # Expected: [0, 2, 4, 6]
     # print_multiples_of_three()         # Expected: 3, 6, 9, ... 30
     # print_numbered_list(["apple", "pear"])
